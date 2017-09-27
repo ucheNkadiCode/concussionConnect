@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ConcussionConnect</string>
+    <string name="register_string">Register</string>
 </resources>
