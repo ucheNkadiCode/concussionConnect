@@ -3,13 +3,17 @@ package com.github.concussionconnect.Controller;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.concussionconnect.R;
+
+import static java.lang.String.valueOf;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -39,12 +43,45 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     public void userRegister() {
         //For now, when they click register, it'll take you into the test as a trainer
+//        String email = editTextEmail.getText().toString().trim();
+//        String password = editTextPassword.getText().toString().trim();
+//        String firstName = editTextFirstName.getText().toString().trim();
+//        String lastName = editTextLastName.getText().toString().trim();
+//        String userType = valueOf(spinnerUserType.getSelectedItem());
+
+//        if (TextUtils.isEmpty(email)) {
+//            Toast.makeText(this, "Please enter your e-mail", Toast.LENGTH_LONG).show();
+//            return;
+//        }
+//
+//        if (TextUtils.isEmpty(firstName)) {
+//            Toast.makeText(this, "Please enter your first name", Toast.LENGTH_LONG).show();
+//            return;
+//        }
+//
+//        if (TextUtils.isEmpty(lastName)) {
+//            Toast.makeText(this, "Please enter your last name", Toast.LENGTH_LONG).show();
+//            return;
+//        }
+//
+//        if (TextUtils.isEmpty(userType)) {
+//            Toast.makeText(this, "Please select the user type", Toast.LENGTH_LONG).show();
+//            return;
+//        }
+//
+//        if (TextUtils.isEmpty(password)) {
+//            Toast.makeText(this, "Please enter your password", Toast.LENGTH_LONG).show();
+//            return;
+//        }
+        Toast.makeText(getApplicationContext(), "User would be registered", Toast.LENGTH_LONG).show();
+
 
     }
     @Override
     public void onClick(View v) {
         if (v == buttonRegister) {
             userRegister();
+
         }
 
         if (v == textLoginHere) {
