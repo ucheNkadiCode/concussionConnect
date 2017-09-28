@@ -3,3 +3,4 @@ build/
 .gradle/
 app/app.iml
 concussionConnect.iml
+local.properties
