@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">ConcussionConnect</string>
     <string name="register_string">Register</string>
+    <string-array name="user_type">
+        <item>Trainer</item>
+        <item>Football Player</item>
+    </string-array>
 </resources>

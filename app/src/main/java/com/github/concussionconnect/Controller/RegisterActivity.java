@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -33,12 +34,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         editTextFirstName = (EditText) findViewById(R.id.editTextFirstName);
         editTextLastName = (EditText) findViewById(R.id.editTextLastName);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        spinnerUserType = (Spinner) findViewById(R.id.spinnerUserType);
         textLoginHere = (TextView) findViewById(R.id.textLoginHere);
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
-
+        spinnerUserType = (Spinner) findViewById(R.id.spinnerUserType);
+        ArrayAdapter<CharSequence> userTypeAdapter = ArrayAdapter.createFromResource(this, R.array.user_type, android.R.layout.simple_spinner_item);
+        userTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerUserType.setAdapter(userTypeAdapter);
         buttonRegister.setOnClickListener(this);
         textLoginHere.setOnClickListener(this);
+
     }
 
     public void userRegister() {
@@ -74,8 +78,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 //            return;
 //        }
         Toast.makeText(getApplicationContext(), "User would be registered", Toast.LENGTH_LONG).show();
-
-
     }
     @Override
     public void onClick(View v) {
