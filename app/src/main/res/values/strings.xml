@@ -33,4 +33,11 @@
         <item>Lemon</item>
         <item>Insect</item>
     </string-array>
+    <string-array name="symptom_list">
+        <item>Headache</item>
+        <item>Dizziness</item>
+        <item>Sensitive to Light</item>
+        <item>Trouble Sleeping</item>
+        <item>Nausea</item>
+    </string-array>
 </resources>

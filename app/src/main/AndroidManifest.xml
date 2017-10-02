@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Controller.LoginActivity" />
-        <activity android:name=".Controller.MemoryTestActivity"></activity>
+        <activity android:name=".Controller.MemoryTestActivity" />
+        <activity android:name=".Controller.SymptomsActivity"></activity>
     </application>
 
 </manifest>

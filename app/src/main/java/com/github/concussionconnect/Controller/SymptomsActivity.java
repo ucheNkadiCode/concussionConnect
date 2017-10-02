@@ -1,10 +1,8 @@
 package com.github.concussionconnect.Controller;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -18,8 +16,8 @@ import com.github.concussionconnect.R;
 
 import java.util.ArrayList;
 
-public class MemoryTestActivity extends AppCompatActivity implements View.OnClickListener {
-    private ArrayList<ChecklistModel> wordList;
+public class SymptomsActivity extends AppCompatActivity implements View.OnClickListener {
+    private ArrayList<ChecklistModel> sympList;
     private Button submitButton;
     private ListView listView;
     ChecklistAdapter checklistAdapter;
@@ -27,13 +25,13 @@ public class MemoryTestActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_memory_test);
-        wordList = ChecklistModel.getChecklistArray(getResources().getStringArray(R.array.memory_word_list_1));
+        setContentView(R.layout.activity_symptoms);
+        sympList = ChecklistModel.getChecklistArray(getResources().getStringArray(R.array.symptom_list));
         submitButton =  (Button) findViewById(R.id.submitButton);
         submitButton.setOnClickListener(this);
         listView = (ListView) findViewById(R.id.listView1);
         resultView = (TextView) findViewById(R.id.resultView);
-        checklistAdapter = new ChecklistAdapter(wordList, this);
+        checklistAdapter = new ChecklistAdapter(sympList, this);
         listView.setAdapter(checklistAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -45,24 +43,15 @@ public class MemoryTestActivity extends AppCompatActivity implements View.OnClic
             }
         });
     }
-
     @Override
     public void onClick(View v) {
         if (v == submitButton) {
-            //Toast.makeText(getApplicationContext(), "Thanks for submitting!", Toast.LENGTH_SHORT).show();
-            int total = 0;
+            Toast.makeText(this, "AYYYEE", Toast.LENGTH_SHORT).show();
             String output = "";
             for (ChecklistModel x : checklistAdapter.getWordList()) {
-                output += "Word: " + x.getWord() + ", " + x.isChecked() + "\n";
-                if (x.isChecked()) {
-                    total++;
-                }
+                output += "Symptom: " + x.getWord() + ", " + x.isChecked() + "\n";
             }
-            int numQuestions = getResources().getStringArray(R.array.memory_word_list_1).length;
             resultView.setText(output);
-            Toast.makeText(getApplicationContext(), "Player got " + total + " out of " + numQuestions + " right", Toast.LENGTH_SHORT).show();
-            finish();
-            startActivity(new Intent(this, SymptomsActivity.class));
         }
     }
 }
