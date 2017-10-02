@@ -77,7 +77,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 //            Toast.makeText(this, "Please enter your password", Toast.LENGTH_LONG).show();
 //            return;
 //        }
-        Toast.makeText(getApplicationContext(), "User would be registered", Toast.LENGTH_LONG).show();
+//        Toast.makeText(getApplicationContext(), "User would be registered", Toast.LENGTH_LONG).show();
+        finish();
+        startActivity(new Intent(this, MemoryTestActivity.class));
+
     }
     @Override
     public void onClick(View v) {

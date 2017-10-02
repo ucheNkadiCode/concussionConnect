@@ -5,4 +5,32 @@
         <item>Trainer</item>
         <item>Football Player</item>
     </string-array>
+    <string-array name="memory_word_list_1">
+        <item>Elbow</item>
+        <item>Apple</item>
+        <item>Carpet</item>
+        <item>Saddle</item>
+        <item>Bubble</item>
+    </string-array>
+    <string-array name="memory_word_list_2">
+        <item>Candle</item>
+        <item>Paper</item>
+        <item>Sugar</item>
+        <item>Sandwich</item>
+        <item>Wagon</item>
+    </string-array>
+    <string-array name="memory_word_list_3">
+        <item>Baby</item>
+        <item>Monkey</item>
+        <item>Perfume</item>
+        <item>Sunset</item>
+        <item>Iron</item>
+    </string-array>
+    <string-array name="memory_word_list_4">
+        <item>Finger</item>
+        <item>Penny</item>
+        <item>Blanket</item>
+        <item>Lemon</item>
+        <item>Insect</item>
+    </string-array>
 </resources>

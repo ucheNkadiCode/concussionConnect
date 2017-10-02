@@ -66,7 +66,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //            // Stop the function from executing further
 //            return;
 //        }
-
-        Toast.makeText(getApplicationContext(), "User would be logged in", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(), "User would be logged in", Toast.LENGTH_SHORT).show();
+        finish();
+        startActivity(new Intent(this, MemoryTestActivity.class));
     }
 }
