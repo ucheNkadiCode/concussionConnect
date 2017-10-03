@@ -62,7 +62,7 @@ public class MemoryTestActivity extends AppCompatActivity implements View.OnClic
             resultView.setText(output);
             Toast.makeText(getApplicationContext(), "Player got " + total + " out of " + numQuestions + " right", Toast.LENGTH_SHORT).show();
             finish();
-            startActivity(new Intent(this, SymptomsActivity.class));
+            startActivity(new Intent(this, EndActivity.class));
         }
     }
 }

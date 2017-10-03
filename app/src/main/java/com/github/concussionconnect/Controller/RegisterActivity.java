@@ -79,7 +79,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 //        }
 //        Toast.makeText(getApplicationContext(), "User would be registered", Toast.LENGTH_LONG).show();
         finish();
-        startActivity(new Intent(this, MemoryTestActivity.class));
+        startActivity(new Intent(this, SymptomsActivity.class));
 
     }
     @Override
@@ -90,7 +90,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
 
         if (v == textLoginHere) {
-            finish();
             startActivity(new Intent(this, LoginActivity.class));
         }
     }

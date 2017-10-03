@@ -1,5 +1,6 @@
 package com.github.concussionconnect.Controller;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -52,6 +53,7 @@ public class SymptomsActivity extends AppCompatActivity implements View.OnClickL
                 output += "Symptom: " + x.getWord() + ", " + x.isChecked() + "\n";
             }
             resultView.setText(output);
+            startActivity(new Intent(this, MemoryTestActivity.class));
         }
     }
 }

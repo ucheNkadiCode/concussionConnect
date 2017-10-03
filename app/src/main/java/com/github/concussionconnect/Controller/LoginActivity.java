@@ -41,8 +41,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
         if (v == textRegisterHere) {
-            finish();
-            startActivity(new Intent(this, RegisterActivity.class));
+            startActivity(new Intent(this, SymptomsActivity.class));
         }
     }
 
@@ -68,6 +67,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //        }
 //        Toast.makeText(getApplicationContext(), "User would be logged in", Toast.LENGTH_SHORT).show();
         finish();
-        startActivity(new Intent(this, MemoryTestActivity.class));
+        startActivity(new Intent(this, SymptomsActivity.class));
     }
 }
