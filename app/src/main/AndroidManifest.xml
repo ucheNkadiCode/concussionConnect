@@ -16,7 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Controller.LoginActivity" />
+        <activity android:name=".Controller.RegisterActivity" />
         <activity android:name=".Controller.MemoryTestActivity" />
         <activity android:name=".Controller.SymptomsActivity" />
         <activity android:name=".Controller.EndActivity"></activity>

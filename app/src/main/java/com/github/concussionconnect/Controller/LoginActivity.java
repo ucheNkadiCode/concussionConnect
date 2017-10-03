@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
         if (v == textRegisterHere) {
-            startActivity(new Intent(this, SymptomsActivity.class));
+            startActivity(new Intent(this, RegisterActivity.class));
         }
     }
 
