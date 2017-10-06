@@ -19,7 +19,9 @@
         <activity android:name=".Controller.RegisterActivity" />
         <activity android:name=".Controller.MemoryTestActivity" />
         <activity android:name=".Controller.SymptomsActivity" />
-        <activity android:name=".Controller.EndActivity"></activity>
+        <activity android:name=".Controller.EndActivity" />
+        <activity android:name=".Controller.MainActivity" />
+        <activity android:name=".Controller.SettingsActivity"></activity>
     </application>
 
 </manifest>

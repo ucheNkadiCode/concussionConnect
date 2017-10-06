@@ -1,5 +1,6 @@
 package com.github.concussionconnect.Controller;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,7 +17,7 @@ import com.github.concussionconnect.R;
 
 import static java.lang.String.valueOf;
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
+public class RegisterActivity extends Activity implements View.OnClickListener {
 
     private EditText editTextEmail;
     private EditText editTextFirstName;
@@ -79,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 //        }
 //        Toast.makeText(getApplicationContext(), "User would be registered", Toast.LENGTH_LONG).show();
         finish();
-        startActivity(new Intent(this, SymptomsActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
 
     }
     @Override

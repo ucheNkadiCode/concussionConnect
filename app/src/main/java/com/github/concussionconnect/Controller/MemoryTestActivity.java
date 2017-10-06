@@ -1,5 +1,6 @@
 package com.github.concussionconnect.Controller;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,12 +19,11 @@ import com.github.concussionconnect.R;
 
 import java.util.ArrayList;
 
-public class MemoryTestActivity extends AppCompatActivity implements View.OnClickListener {
+public class MemoryTestActivity extends Activity implements View.OnClickListener {
     private ArrayList<ChecklistModel> wordList;
     private Button submitButton;
     private ListView listView;
     ChecklistAdapter checklistAdapter;
-    private TextView resultView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +32,6 @@ public class MemoryTestActivity extends AppCompatActivity implements View.OnClic
         submitButton =  (Button) findViewById(R.id.submitButton);
         submitButton.setOnClickListener(this);
         listView = (ListView) findViewById(R.id.listView1);
-        resultView = (TextView) findViewById(R.id.resultView);
         checklistAdapter = new ChecklistAdapter(wordList, this);
         listView.setAdapter(checklistAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -59,7 +58,6 @@ public class MemoryTestActivity extends AppCompatActivity implements View.OnClic
                 }
             }
             int numQuestions = getResources().getStringArray(R.array.memory_word_list_1).length;
-            resultView.setText(output);
             Toast.makeText(getApplicationContext(), "Player got " + total + " out of " + numQuestions + " right", Toast.LENGTH_SHORT).show();
             finish();
             startActivity(new Intent(this, EndActivity.class));

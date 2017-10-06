@@ -1,5 +1,6 @@
 package com.github.concussionconnect.Controller;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,7 +9,7 @@ import android.widget.Button;
 
 import com.github.concussionconnect.R;
 
-public class EndActivity extends AppCompatActivity implements View.OnClickListener {
+public class EndActivity extends Activity implements View.OnClickListener {
     private Button logoutButton;
     private Button newTestButton;
     @Override

@@ -8,6 +8,17 @@
     tools:context="com.github.concussionconnect.Controller.MemoryTestActivity"
     android:weightSum="1">
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.09"
+        android:fontFamily="sans-serif"
+        android:text="What are the symptoms?"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="18sp" />
+
     <ListView
         android:id="@+id/listView1"
         android:layout_width="wrap_content"

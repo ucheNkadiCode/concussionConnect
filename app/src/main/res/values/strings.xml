@@ -3,7 +3,6 @@
     <string name="register_string">Register</string>
     <string-array name="user_type">
         <item>Trainer</item>
-        <item>Football Player</item>
     </string-array>
     <string-array name="memory_word_list_1">
         <item>Elbow</item>

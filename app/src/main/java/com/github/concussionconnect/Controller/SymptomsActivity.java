@@ -1,5 +1,6 @@
 package com.github.concussionconnect.Controller;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,7 +18,7 @@ import com.github.concussionconnect.R;
 
 import java.util.ArrayList;
 
-public class SymptomsActivity extends AppCompatActivity implements View.OnClickListener {
+public class SymptomsActivity extends Activity implements View.OnClickListener {
     private ArrayList<ChecklistModel> sympList;
     private Button submitButton;
     private ListView listView;

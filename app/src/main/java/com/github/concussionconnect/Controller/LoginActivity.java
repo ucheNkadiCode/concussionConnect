@@ -1,5 +1,6 @@
 package com.github.concussionconnect.Controller;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +17,7 @@ import com.github.concussionconnect.R;
  * Created by unkadi on 9/27/17.
  */
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends Activity implements View.OnClickListener {
     private EditText editTextEmail;
     private EditText editTextPassword;
     private Button buttonLogin;
@@ -67,6 +68,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //        }
 //        Toast.makeText(getApplicationContext(), "User would be logged in", Toast.LENGTH_SHORT).show();
         finish();
-        startActivity(new Intent(this, SymptomsActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
     }
 }

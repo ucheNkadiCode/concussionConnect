@@ -54,7 +54,7 @@ tools:context="com.github.concussionconnect.Controller.RegisterActivity" >
     android:id="@+id/spinnerUserType"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="5dp"/>
+    android:layout_marginBottom="9dp"/>
 
     <Button
         android:id="@+id/buttonRegister"
