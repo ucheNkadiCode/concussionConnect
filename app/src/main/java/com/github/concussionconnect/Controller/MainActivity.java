@@ -29,7 +29,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v == testButton) {
-            startActivity(new Intent(this, SymptomsActivity.class));
+            startActivity(new Intent(this, TestSetup.class));
         }
         if (v == settingsButton) {
             startActivity(new Intent(this, SettingsActivity.class));

@@ -2,15 +2,12 @@ package com.github.concussionconnect.Controller;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.concussionconnect.Model.ChecklistAdapter;
 import com.github.concussionconnect.Model.ChecklistModel;
@@ -20,19 +17,17 @@ import java.util.ArrayList;
 
 public class SymptomsActivity extends Activity implements View.OnClickListener {
     private ArrayList<ChecklistModel> sympList;
-    private Button submitButton;
+    private Button nextButton;
     private ListView listView;
     ChecklistAdapter checklistAdapter;
-    private TextView resultView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_symptoms);
         sympList = ChecklistModel.getChecklistArray(getResources().getStringArray(R.array.symptom_list));
-        submitButton =  (Button) findViewById(R.id.submitButton);
-        submitButton.setOnClickListener(this);
+        nextButton =  (Button) findViewById(R.id.nextButton);
+        nextButton.setOnClickListener(this);
         listView = (ListView) findViewById(R.id.listView1);
-        resultView = (TextView) findViewById(R.id.resultView);
         checklistAdapter = new ChecklistAdapter(sympList, this);
         listView.setAdapter(checklistAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -47,14 +42,12 @@ public class SymptomsActivity extends Activity implements View.OnClickListener {
     }
     @Override
     public void onClick(View v) {
-        if (v == submitButton) {
-            Toast.makeText(this, "AYYYEE", Toast.LENGTH_SHORT).show();
+        if (v == nextButton) {
             String output = "";
             for (ChecklistModel x : checklistAdapter.getWordList()) {
                 output += "Symptom: " + x.getWord() + ", " + x.isChecked() + "\n";
             }
-            resultView.setText(output);
-            startActivity(new Intent(this, MemoryTestActivity.class));
+            startActivity(new Intent(this, MemoryTestActivity.class).putExtras(getIntent().getExtras()));
         }
     }
 }

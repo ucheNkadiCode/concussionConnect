@@ -21,19 +21,16 @@ import java.util.ArrayList;
 
 public class MemoryTestActivity extends Activity implements View.OnClickListener {
     private ArrayList<ChecklistModel> wordList;
-    private Button submitButton;
+    private Button nextButton;
     private ListView listView;
     ChecklistAdapter checklistAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memory_test);
-        wordList = ChecklistModel.getChecklistArray(getResources().getStringArray(R.array.memory_word_list_1));
-        submitButton =  (Button) findViewById(R.id.submitButton);
-        submitButton.setOnClickListener(this);
+        nextButton =  (Button) findViewById(R.id.nextButton);
+        nextButton.setOnClickListener(this);
         listView = (ListView) findViewById(R.id.listView1);
-        checklistAdapter = new ChecklistAdapter(wordList, this);
-        listView.setAdapter(checklistAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
@@ -43,11 +40,28 @@ public class MemoryTestActivity extends Activity implements View.OnClickListener
                 box.setChecked(!box.isChecked());
             }
         });
+        Bundle bundle = new Bundle();
+        bundle = getIntent().getExtras();
+        int answer = Integer.valueOf(bundle.getString("listAnswer"));
+        String[] selectedWords = null;
+        if (answer == 0) {
+            selectedWords = getResources().getStringArray(R.array.memory_word_list_1);
+        } else if (answer == 1) {
+            selectedWords = getResources().getStringArray(R.array.memory_word_list_2);
+        } else if (answer == 2) {
+            selectedWords = getResources().getStringArray(R.array.memory_word_list_3);
+        } else if (answer == 3) {
+            selectedWords = getResources().getStringArray(R.array.memory_word_list_4);
+        }
+        wordList = ChecklistModel.getChecklistArray(selectedWords);
+        checklistAdapter = new ChecklistAdapter(wordList, this);
+        listView.setAdapter(checklistAdapter);
+
     }
 
     @Override
     public void onClick(View v) {
-        if (v == submitButton) {
+        if (v == nextButton) {
             //Toast.makeText(getApplicationContext(), "Thanks for submitting!", Toast.LENGTH_SHORT).show();
             int total = 0;
             String output = "";

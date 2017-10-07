@@ -39,4 +39,14 @@
         <item>Trouble Sleeping</item>
         <item>Nausea</item>
     </string-array>
+    <string-array name="roster">
+        <item>John Smith WR #85</item>
+        <item>Rick Owens LB #52</item>
+    </string-array>
+    <string-array name="wordBankSelector">
+        <item>List 1</item>
+        <item>List 2</item>
+        <item>List 3</item>
+        <item>List 4</item>
+    </string-array>
 </resources>

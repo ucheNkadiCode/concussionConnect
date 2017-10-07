@@ -21,7 +21,8 @@
         <activity android:name=".Controller.SymptomsActivity" />
         <activity android:name=".Controller.EndActivity" />
         <activity android:name=".Controller.MainActivity" />
-        <activity android:name=".Controller.SettingsActivity"></activity>
+        <activity android:name=".Controller.SettingsActivity" />
+        <activity android:name=".Controller.TestSetup"></activity>
     </application>
 
 </manifest>

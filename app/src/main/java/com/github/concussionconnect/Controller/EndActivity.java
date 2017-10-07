@@ -28,7 +28,7 @@ public class EndActivity extends Activity implements View.OnClickListener {
             startActivity(new Intent(this, LoginActivity.class));
         }
         if (v == newTestButton) {
-            startActivity(new Intent(this, SymptomsActivity.class));
+            startActivity(new Intent(this, TestSetup.class));
         }
     }
 }
