@@ -42,7 +42,9 @@ public class TestSetupActivity extends Activity implements View.OnClickListener 
         if (v == nextButton) {
             Intent i = new Intent(this, SymptomsActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putInt("listAnswer",  wordListSpinner.getSelectedItemPosition());
+            String listAnswer = "memory_word_list_" + (wordListSpinner.getSelectedItemPosition() + 1);
+            int id = getResources().getIdentifier(listAnswer, "array", getPackageName());
+            bundle.putInt("listId", id);
             i.putExtras(bundle);
             startActivity(i);
         }

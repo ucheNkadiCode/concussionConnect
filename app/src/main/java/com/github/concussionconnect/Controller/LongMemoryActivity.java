@@ -40,17 +40,8 @@ public class LongMemoryActivity extends Activity implements View.OnClickListener
             }
         });
         bundle = getIntent().getExtras();
-        int answer = bundle.getInt("listAnswer");
-        String[] selectedWords = null;
-        if (answer == 0) {
-            selectedWords = getResources().getStringArray(R.array.memory_word_list_1);
-        } else if (answer == 1) {
-            selectedWords = getResources().getStringArray(R.array.memory_word_list_2);
-        } else if (answer == 2) {
-            selectedWords = getResources().getStringArray(R.array.memory_word_list_3);
-        } else if (answer == 3) {
-            selectedWords = getResources().getStringArray(R.array.memory_word_list_4);
-        }
+        int id = bundle.getInt("listId");
+        String[] selectedWords = getResources().getStringArray(id);
         wordList = ChecklistModel.getChecklistArray(selectedWords);
         checklistAdapter = new ChecklistAdapter(wordList, this);
         listView.setAdapter(checklistAdapter);

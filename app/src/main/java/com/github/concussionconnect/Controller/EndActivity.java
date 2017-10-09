@@ -27,7 +27,7 @@ public class EndActivity extends Activity implements View.OnClickListener {
         newTestButton.setOnClickListener(this);
         displayResults.setText("");
         bundle = getIntent().getExtras();
-        displayResults.append("List Choice: " + bundle.getInt("listanswer") +"\n");
+        displayResults.append("List ID: " + bundle.getInt("listId") +"\n");
         ArrayList<String> symptoms = getIntent().getStringArrayListExtra("symptoms");
         String output = "";
         for (String x : symptoms) {
