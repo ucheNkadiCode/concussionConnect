@@ -22,7 +22,7 @@ import com.github.concussionconnect.R;
 
 import java.util.ArrayList;
 
-public class MemoryTestActivity extends AppCompatActivity implements View.OnClickListener {
+public class MemoryTestActivity extends Activity implements View.OnClickListener {
     private ArrayList<ChecklistModel> wordList;
     private Button nextButton;
     private ListView listView;
