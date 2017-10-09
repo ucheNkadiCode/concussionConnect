@@ -5,33 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.github.concussionconnect.Controller.MemoryTestActivity"
+    tools:context="com.github.concussionconnect.Controller.WordLearnActivity"
     android:weightSum="1">
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.10"
-        android:fontFamily="sans-serif"
-        android:text="Which words do they remember?"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="18sp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <ListView
-        android:id="@+id/listView1"
-        android:layout_width="wrap_content"
-        android:layout_height="275dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView3"
-        android:layout_marginTop="19dp"
-        android:layout_weight="0.24"
-        android:clickable="true" />
 
 
     <Button
@@ -43,36 +18,37 @@
         android:text="Next"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="37dp" />
 
     <ImageButton
         android:id="@+id/plusButton"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:layout_below="@+id/listView1"
-        android:layout_marginLeft="17dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="29dp"
-        android:layout_toEndOf="@+id/minusButton"
-        android:layout_toRightOf="@+id/minusButton"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:background="#0000"
-        android:src="@drawable/plusbutton" />
+        android:src="@drawable/plusbutton"
+        android:layout_alignTop="@+id/minusButton"
+        android:layout_alignRight="@+id/textView7"
+        android:layout_alignEnd="@+id/textView7"
+        android:layout_marginRight="12dp"
+        android:layout_marginEnd="12dp" />
 
     <ImageButton
         android:id="@+id/minusButton"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/plusButton"
         android:layout_marginLeft="14dp"
         android:layout_marginStart="14dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:background="#0000"
-        android:src="@drawable/minusbutton" />
+        android:src="@drawable/minusbutton"
+        android:layout_marginBottom="80dp"
+        android:layout_above="@+id/nextButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:id="@+id/errorNumText"
@@ -99,22 +75,36 @@
         android:text="# of Errors"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="18sp"
-        android:layout_below="@+id/listView1"
+        android:layout_alignBaseline="@+id/textView7"
+        android:layout_alignBottom="@+id/textView7"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginRight="44dp"
-        android:layout_marginEnd="44dp" />
+        android:layout_marginRight="43dp"
+        android:layout_marginEnd="43dp" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="Single Leg Stance"
+        android:text="Double Leg Stance"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="18sp"
-        android:layout_below="@+id/listView1"
+        android:layout_above="@+id/plusButton"
         android:layout_alignLeft="@+id/minusButton"
-        android:layout_alignStart="@+id/minusButton" />
+        android:layout_alignStart="@+id/minusButton"
+        android:layout_marginBottom="22dp" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="89dp"
+        android:text="User is being presented with 5 words.\n Monitor their balance!"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="36sp" />
 
 
 </RelativeLayout>

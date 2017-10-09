@@ -14,7 +14,7 @@ import com.github.concussionconnect.R;
 
 import java.sql.BatchUpdateException;
 
-public class TestSetup extends Activity  implements View.OnClickListener {
+public class TestSetupActivity extends Activity implements View.OnClickListener {
     private Spinner rosterSpinner;
     private Spinner wordListSpinner;
     private Button nextButton;
@@ -42,7 +42,7 @@ public class TestSetup extends Activity  implements View.OnClickListener {
         if (v == nextButton) {
             Intent i = new Intent(this, SymptomsActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putString("listAnswer",  String.valueOf(wordListSpinner.getSelectedItemPosition()));
+            bundle.putInt("listAnswer",  wordListSpinner.getSelectedItemPosition());
             i.putExtras(bundle);
             startActivity(i);
         }

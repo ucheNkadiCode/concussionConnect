@@ -49,4 +49,7 @@
         <item>List 3</item>
         <item>List 4</item>
     </string-array>
+    <string-array name="months_in_reverse">
+        <item>December\nNovember\nOctober\nSeptember\nAugust\nJuly\nJune\nMay\nApril\nMarch\nFebruary\nJanuary</item>
+    </string-array>
 </resources>

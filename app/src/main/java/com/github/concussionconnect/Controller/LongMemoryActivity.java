@@ -2,22 +2,24 @@ package com.github.concussionconnect.Controller;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.github.concussionconnect.Model.ChecklistAdapter;
 import com.github.concussionconnect.Model.ChecklistModel;
 import com.github.concussionconnect.R;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class SymptomsActivity extends Activity implements View.OnClickListener {
-    private ArrayList<ChecklistModel> sympList;
+public class LongMemoryActivity extends Activity implements View.OnClickListener {
+    private ArrayList<ChecklistModel> wordList;
     private Button nextButton;
     private ListView listView;
     ChecklistAdapter checklistAdapter;
@@ -25,38 +27,45 @@ public class SymptomsActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_symptoms);
-        sympList = ChecklistModel.getChecklistArray(getResources().getStringArray(R.array.symptom_list));
+        setContentView(R.layout.activity_long_memory);
         nextButton =  (Button) findViewById(R.id.nextButton);
         nextButton.setOnClickListener(this);
         listView = (ListView) findViewById(R.id.listView1);
-        checklistAdapter = new ChecklistAdapter(sympList, this);
-        listView.setAdapter(checklistAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                ChecklistModel checklistModel = ((ChecklistAdapter) listView.getAdapter()).getWordList().get(position);
                 CheckBox box = (CheckBox) view.findViewById(R.id.checkBox1);
                 box.setChecked(!box.isChecked());
             }
         });
         bundle = getIntent().getExtras();
+        int answer = bundle.getInt("listAnswer");
+        String[] selectedWords = null;
+        if (answer == 0) {
+            selectedWords = getResources().getStringArray(R.array.memory_word_list_1);
+        } else if (answer == 1) {
+            selectedWords = getResources().getStringArray(R.array.memory_word_list_2);
+        } else if (answer == 2) {
+            selectedWords = getResources().getStringArray(R.array.memory_word_list_3);
+        } else if (answer == 3) {
+            selectedWords = getResources().getStringArray(R.array.memory_word_list_4);
+        }
+        wordList = ChecklistModel.getChecklistArray(selectedWords);
+        checklistAdapter = new ChecklistAdapter(wordList, this);
+        listView.setAdapter(checklistAdapter);
     }
     @Override
     public void onClick(View v) {
         if (v == nextButton) {
-            ArrayList<String> symptoms = new ArrayList<>();
+            int total = 0;
             for (ChecklistModel x : checklistAdapter.getWordList()) {
                 if (x.isChecked()) {
-                    symptoms.add(x.getWord());
+                    total++;
                 }
             }
-            if (symptoms.size() == 0) {
-                symptoms.add("none");
-            }
-            bundle.putStringArrayList("symptoms", symptoms);
-            startActivity(new Intent(this, WordLearnActivity.class).putExtras(bundle));
+            bundle.putInt("longMemScore", total);
+            startActivity(new Intent(this, EndActivity.class).putExtras(bundle));
         }
     }
 }

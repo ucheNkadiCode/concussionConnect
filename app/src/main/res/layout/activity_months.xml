@@ -5,31 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.github.concussionconnect.Controller.MemoryTestActivity"
+    tools:context="com.github.concussionconnect.Controller.MonthsActivity"
     android:weightSum="1">
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_weight="0.10"
         android:fontFamily="sans-serif"
-        android:text="Which words do they remember?"
+        android:text="Do they remember the months in reverse?"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="18sp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:textSize="18sp" />
 
     <ListView
         android:id="@+id/listView1"
         android:layout_width="wrap_content"
-        android:layout_height="275dp"
+        android:layout_height="295dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView3"
         android:layout_marginTop="19dp"
+        android:layout_marginBottom="10dp"
         android:layout_weight="0.24"
         android:clickable="true" />
 
@@ -41,56 +42,29 @@
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:text="Next"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <ImageButton
-        android:id="@+id/plusButton"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_below="@+id/listView1"
-        android:layout_marginLeft="17dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="29dp"
-        android:layout_toEndOf="@+id/minusButton"
-        android:layout_toRightOf="@+id/minusButton"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:background="#0000"
-        android:src="@drawable/plusbutton" />
-
-    <ImageButton
-        android:id="@+id/minusButton"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
+        android:layout_below="@+id/errorNumText"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/plusButton"
-        android:layout_marginLeft="14dp"
-        android:layout_marginStart="14dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:background="#0000"
-        android:src="@drawable/minusbutton" />
+        android:layout_marginTop="11dp" />
 
     <EditText
         android:id="@+id/errorNumText"
         android:layout_width="55dp"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/plusButton"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="61dp"
-        android:layout_marginRight="61dp"
         android:ems="10"
-        android:inputType="none"
-        android:focusable="false"
-        android:clickable="false"
         android:text="0"
         android:textAlignment="center"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_below="@+id/textView6"
+        android:layout_alignLeft="@+id/textView6"
+        android:layout_alignStart="@+id/textView6"
+        android:inputType="none"
+        android:focusable="false"
+        android:clickable="false"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="16dp" />
 
     <TextView
         android:id="@+id/textView6"
@@ -107,14 +81,42 @@
 
     <TextView
         android:id="@+id/textView7"
-        android:layout_width="150dp"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:text="Single Leg Stance"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="18sp"
-        android:layout_below="@+id/listView1"
         android:layout_alignLeft="@+id/minusButton"
-        android:layout_alignStart="@+id/minusButton" />
+        android:layout_alignStart="@+id/minusButton"
+        android:layout_below="@+id/listView1"
+        android:text="Tandem Leg Stance"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="18sp" />
+
+    <ImageButton
+        android:id="@+id/minusButton"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_alignBottom="@+id/errorNumText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:background="#0000"
+        android:src="@drawable/minusbutton" />
+
+    <ImageButton
+        android:id="@+id/plusButton"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_alignTop="@+id/minusButton"
+        android:layout_marginLeft="17dp"
+        android:layout_marginStart="17dp"
+        android:layout_toEndOf="@+id/minusButton"
+        android:layout_toRightOf="@+id/minusButton"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:background="#0000"
+        android:src="@drawable/plusbutton" />
 
 
 </RelativeLayout>
