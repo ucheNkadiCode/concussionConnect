@@ -10,13 +10,14 @@ android:layout_alignParentLeft="true"
 android:layout_alignParentStart="true"
 tools:context="com.github.concussionconnect.Controller.RegisterActivity" >
 
-<TextView
-    android:textAlignment="center"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:textAppearance="?android:attr/textAppearanceLarge"
-    android:text="@string/register_string"
-    android:id="@+id/editTextRegistrationTitle" />
+    <TextView
+        android:id="@+id/editTextRegistrationTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/register_string"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold" />
 
 <EditText
     android:layout_margin="15dp"

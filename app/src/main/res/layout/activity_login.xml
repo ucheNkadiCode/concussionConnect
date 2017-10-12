@@ -16,12 +16,13 @@
         android:layout_marginTop="42dp">
 
         <TextView
-            android:textAlignment="center"
+            android:id="@+id/editTextRegistrationTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Login"
-            android:id="@+id/editTextRegistrationTitle" />
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textStyle="bold" />
 
         <EditText
             android:layout_margin="15dp"
