@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.github.concussionconnect.Model.ChecklistAdapter;
 import com.github.concussionconnect.Model.ChecklistModel;
@@ -16,6 +17,7 @@ import com.github.concussionconnect.Model.SymptomAdapter;
 import com.github.concussionconnect.Model.SymptomModel;
 import com.github.concussionconnect.R;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -23,6 +25,7 @@ public class SymptomsActivity extends Activity implements View.OnClickListener {
     private ArrayList<SymptomModel> sympList;
     private Button nextButton;
     private ListView listView;
+    private TextView textThing;
     SymptomAdapter symptomAdapter;
     Bundle bundle;
     @Override
@@ -35,30 +38,21 @@ public class SymptomsActivity extends Activity implements View.OnClickListener {
         listView = (ListView) findViewById(R.id.listView1);
         symptomAdapter = new SymptomAdapter(sympList, this);
         listView.setAdapter(symptomAdapter);
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view,
-//                                    int position, long id) {
-//                SymptomModel symptomModel = ((SymptomAdapter) listView.getAdapter()).getSympList().get(position);
-//                SeekBar valueSlider = (SeekBar) view.findViewById(R.id.valueSlider);
-//                //valueSlider.setChecked(!box.isChecked());
-//            }
-//        });
         bundle = getIntent().getExtras();
+        textThing = (TextView) findViewById(R.id.textThing);
+        textThing.setText("");
     }
     @Override
     public void onClick(View v) {
         if (v == nextButton) {
-            ArrayList<String> symptoms = new ArrayList<>();
+            ArrayList<SymptomModel> symptoms = new ArrayList<>();
+            textThing.setText("");
             for (SymptomModel x : symptomAdapter.getSympList()) {
-//                if (x.isChecked()) {
-//                    symptoms.add(x.getWord());
-//                }
+                textThing.append("Symptom: " + x.getSympName() + ", Value: " + x.getValue() + "\n");
+                symptoms.add(x);
             }
-            if (symptoms.size() == 0) {
-                symptoms.add("none");
-            }
-            bundle.putStringArrayList("symptoms", symptoms);
+
+            bundle.putSerializable("symptoms", symptoms);
             startActivity(new Intent(this, WordLearnActivity.class).putExtras(bundle));
         }
     }

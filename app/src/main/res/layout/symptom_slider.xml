@@ -6,24 +6,37 @@
         android:id="@+id/sympWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="12dp"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <SeekBar
         android:id="@+id/valueSlider"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:layout_width="250dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:max="5"
+        android:progress="0"
+        android:layout_below="@+id/sympWord"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/sympValueText"
+        android:layout_width="50dp"
+        android:layout_height="70dp"
+        android:layout_alignBottom="@+id/valueSlider"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/sympWord"
-        android:layout_marginEnd="11dp"
-        android:layout_marginRight="11dp"
-        android:max="5"
-        android:progress="0" />
+        android:layout_alignParentTop="true"
+        android:clickable="false"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 </RelativeLayout>

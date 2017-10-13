@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -31,6 +32,7 @@ public class SymptomAdapter extends ArrayAdapter<SymptomModel>{
     private static class ViewHolder {
         TextView word;
         SeekBar valueSlider;
+        EditText sympValueText;
     }
     public ArrayList<SymptomModel> getSympList() {
         return sympList;
@@ -53,12 +55,15 @@ public class SymptomAdapter extends ArrayAdapter<SymptomModel>{
 
             viewHolder.word = (TextView) convertView.findViewById(R.id.sympWord);
             viewHolder.valueSlider = (SeekBar) convertView.findViewById(R.id.valueSlider);
+            viewHolder.sympValueText = (EditText) convertView.findViewById(R.id.sympValueText);
+            viewHolder.sympValueText.setText("1");
             viewHolder.valueSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
 
                     int getPosition = (Integer) seekBar.getTag();  // Here we get the position that we have set for the Seekbar using setTag.
                     sympList.get(getPosition).setValue(progress + 1); // Set the value of Actual symptom object. Adding 1 makes scale from 1 to 6
+                    viewHolder.sympValueText.setText(String.valueOf(progress + 1));
                     viewHolder.valueSlider.setProgress(progress); // As well as actual value of seekBar
                 }
 
@@ -86,7 +91,7 @@ public class SymptomAdapter extends ArrayAdapter<SymptomModel>{
         viewHolder.valueSlider.setTag(position); // This line is important.
 
         viewHolder.word.setText(sympList.get(position).getSympName());
-        viewHolder.valueSlider.setProgress(sympList.get(position).getValue());
+        viewHolder.valueSlider.setProgress(sympList.get(position).getValue() - 1);
         // Return the completed view to render on screen
         return convertView;
     }

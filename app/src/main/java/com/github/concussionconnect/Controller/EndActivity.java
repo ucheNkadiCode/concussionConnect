@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.github.concussionconnect.Model.SymptomModel;
 import com.github.concussionconnect.R;
 
 import java.util.ArrayList;
@@ -28,12 +29,15 @@ public class EndActivity extends Activity implements View.OnClickListener {
         displayResults.setText("");
         bundle = getIntent().getExtras();
         displayResults.append("List ID: " + bundle.getInt("listId") +"\n");
-        ArrayList<String> symptoms = getIntent().getStringArrayListExtra("symptoms");
-        String output = "";
-        for (String x : symptoms) {
-            output = output == "" ? x : output + ", " + x;
+        ArrayList<SymptomModel> symptoms = (ArrayList<SymptomModel>) getIntent().getSerializableExtra("symptoms");
+//        String output = "";
+//        for (String x : symptoms) {
+//            output = output == "" ? x : output + ", " + x;
+//        }
+//        displayResults.append("Symptoms: " + output + "\n");
+        for (SymptomModel x : symptoms) {
+            displayResults.append("Symptom: " + x.getSympName() + ", Value: " + x.getValue() + "\n");
         }
-        displayResults.append("Symptoms: " + output + "\n");
         displayResults.append("Double Leg Errors: " + bundle.getInt("doubleLegErrors") +"\n");
         displayResults.append("Short Term Memory Score: " + bundle.getInt("shortMemScore") +"\n");
         displayResults.append("Single Leg Errors: " + bundle.getInt("singleLegErrors") +"\n");

@@ -1,18 +1,19 @@
 package com.github.concussionconnect.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by unkadi on 10/12/17.
  */
 
-public class SymptomModel {
+public class SymptomModel implements Serializable{
     private String sympName;
     private int value;
 
     public SymptomModel(String sympName) {
         this.sympName = sympName;
-        this.value = 0;
+        this.value = 1;
     }
 
     public String getSympName() {
