@@ -17,7 +17,7 @@
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:max="5"
+        android:max="6"
         android:progress="0"
         android:layout_below="@+id/sympWord"
         android:layout_alignParentLeft="true"

@@ -35,9 +35,15 @@ public class EndActivity extends Activity implements View.OnClickListener {
 //            output = output == "" ? x : output + ", " + x;
 //        }
 //        displayResults.append("Symptoms: " + output + "\n");
+        int i = 1;
+        displayResults.append("\n");
         for (SymptomModel x : symptoms) {
-            displayResults.append("Symptom: " + x.getSympName() + ", Value: " + x.getValue() + "\n");
+            displayResults.append("Symptom: " + x.getSympName() + ", Value: " + x.getValue());
+            displayResults.append(", ");
+
+            i++;
         }
+        displayResults.append("\n\n");
         displayResults.append("Double Leg Errors: " + bundle.getInt("doubleLegErrors") +"\n");
         displayResults.append("Short Term Memory Score: " + bundle.getInt("shortMemScore") +"\n");
         displayResults.append("Single Leg Errors: " + bundle.getInt("singleLegErrors") +"\n");

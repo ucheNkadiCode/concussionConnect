@@ -25,7 +25,6 @@ public class SymptomsActivity extends Activity implements View.OnClickListener {
     private ArrayList<SymptomModel> sympList;
     private Button nextButton;
     private ListView listView;
-    private TextView textThing;
     SymptomAdapter symptomAdapter;
     Bundle bundle;
     @Override
@@ -39,16 +38,12 @@ public class SymptomsActivity extends Activity implements View.OnClickListener {
         symptomAdapter = new SymptomAdapter(sympList, this);
         listView.setAdapter(symptomAdapter);
         bundle = getIntent().getExtras();
-        textThing = (TextView) findViewById(R.id.textThing);
-        textThing.setText("");
     }
     @Override
     public void onClick(View v) {
         if (v == nextButton) {
             ArrayList<SymptomModel> symptoms = new ArrayList<>();
-            textThing.setText("");
             for (SymptomModel x : symptomAdapter.getSympList()) {
-                textThing.append("Symptom: " + x.getSympName() + ", Value: " + x.getValue() + "\n");
                 symptoms.add(x);
             }
 

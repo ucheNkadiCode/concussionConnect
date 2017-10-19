@@ -13,7 +13,7 @@ public class SymptomModel implements Serializable{
 
     public SymptomModel(String sympName) {
         this.sympName = sympName;
-        this.value = 1;
+        this.value = 0;
     }
 
     public String getSympName() {

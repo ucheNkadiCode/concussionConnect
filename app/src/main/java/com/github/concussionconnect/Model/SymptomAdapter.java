@@ -56,14 +56,14 @@ public class SymptomAdapter extends ArrayAdapter<SymptomModel>{
             viewHolder.word = (TextView) convertView.findViewById(R.id.sympWord);
             viewHolder.valueSlider = (SeekBar) convertView.findViewById(R.id.valueSlider);
             viewHolder.sympValueText = (EditText) convertView.findViewById(R.id.sympValueText);
-            viewHolder.sympValueText.setText("1");
+            viewHolder.sympValueText.setText("0");
             viewHolder.valueSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
 
                     int getPosition = (Integer) seekBar.getTag();  // Here we get the position that we have set for the Seekbar using setTag.
-                    sympList.get(getPosition).setValue(progress + 1); // Set the value of Actual symptom object. Adding 1 makes scale from 1 to 6
-                    viewHolder.sympValueText.setText(String.valueOf(progress + 1));
+                    sympList.get(getPosition).setValue(progress); // Set the value of Actual symptom object. Adding 1 makes scale from 1 to 6
+                    viewHolder.sympValueText.setText(String.valueOf(progress));
                     viewHolder.valueSlider.setProgress(progress); // As well as actual value of seekBar
                 }
 
@@ -91,7 +91,7 @@ public class SymptomAdapter extends ArrayAdapter<SymptomModel>{
         viewHolder.valueSlider.setTag(position); // This line is important.
 
         viewHolder.word.setText(sympList.get(position).getSympName());
-        viewHolder.valueSlider.setProgress(sympList.get(position).getValue() - 1);
+        viewHolder.valueSlider.setProgress(sympList.get(position).getValue());
         // Return the completed view to render on screen
         return convertView;
     }

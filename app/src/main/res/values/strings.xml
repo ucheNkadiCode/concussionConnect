@@ -34,10 +34,29 @@
     </string-array>
     <string-array name="symptom_list">
         <item>Headache</item>
+        <item>Pressure in head</item>
+        <item>Neck Pain</item>
+        <item>Nausea or vomiting</item>
         <item>Dizziness</item>
-        <item>Sensitive to Light</item>
-        <item>Trouble Sleeping</item>
-        <item>Nausea</item>
+        <item>Blurred Vision</item>
+        <item>Balance Problems</item>
+        <item>Sensitivity to light</item>
+        <item>Sensitivity to noise</item>
+        <item>Feeling slowed down</item>
+        <item>Feeling like "in a fog"</item>
+        <item>"Don't feel right"</item>
+        <item>Difficulty concentrating</item>
+        <item>Difficulty Remembering</item>
+        <item>Fatigue or low energy</item>
+        <item>Confusion</item>
+        <item>Drowsiness</item>
+        <item>More emotional</item>
+        <item>Irritability</item>
+        <item>Sadness</item>
+        <item>Nervous or Anxious</item>
+        <item>Trouble falling asleep</item>
+
+
     </string-array>
     <string-array name="roster">
         <item>John Smith WR #85</item>
