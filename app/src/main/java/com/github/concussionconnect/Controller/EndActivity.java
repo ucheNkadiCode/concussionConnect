@@ -30,17 +30,13 @@ public class EndActivity extends Activity implements View.OnClickListener {
         bundle = getIntent().getExtras();
         displayResults.append("List ID: " + bundle.getInt("listId") +"\n");
         ArrayList<SymptomModel> symptoms = (ArrayList<SymptomModel>) getIntent().getSerializableExtra("symptoms");
-//        String output = "";
-//        for (String x : symptoms) {
-//            output = output == "" ? x : output + ", " + x;
-//        }
-//        displayResults.append("Symptoms: " + output + "\n");
-        int i = 1;
+        int i = 0;
         displayResults.append("\n");
         for (SymptomModel x : symptoms) {
-            displayResults.append("Symptom: " + x.getSympName() + ", Value: " + x.getValue());
-            displayResults.append(", ");
-
+            displayResults.append(x.getSympName() + ", Severity: " + x.getValue());
+            if (!(i == symptoms.size() - 1)) {
+                displayResults.append(", ");
+            }
             i++;
         }
         displayResults.append("\n\n");
