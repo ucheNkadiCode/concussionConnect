@@ -30,15 +30,20 @@ public class EndActivity extends Activity implements View.OnClickListener {
         bundle = getIntent().getExtras();
         displayResults.append("List ID: " + bundle.getInt("listId") +"\n");
         ArrayList<SymptomModel> symptoms = (ArrayList<SymptomModel>) getIntent().getSerializableExtra("symptoms");
-        int i = 0;
+        int numSymptoms = 0;
+        int severityTotal = 0;
         displayResults.append("\n");
+        String symptomString = "";
         for (SymptomModel x : symptoms) {
-            displayResults.append(x.getSympName() + ", Severity: " + x.getValue());
-            if (!(i == symptoms.size() - 1)) {
-                displayResults.append(", ");
+            if (x.getValue() > 0) {
+                symptomString = symptomString == "" ? x.getSympName() + ", Severity: " + x.getValue() : symptomString + ", " + x.getSympName() + ", Severity: " + x.getValue();
+                numSymptoms++;
             }
-            i++;
+            severityTotal += x.getValue();
         }
+        displayResults.append(symptomString);
+        displayResults.append("\nTotal number of symptoms: " + numSymptoms + " of " + symptoms.size() + "\n");
+        displayResults.append("Symptom severity score: " + severityTotal + " of " + symptoms.size() * 6);
         displayResults.append("\n\n");
         displayResults.append("Double Leg Errors: " + bundle.getInt("doubleLegErrors") +"\n");
         displayResults.append("Short Term Memory Score: " + bundle.getInt("shortMemScore") +"\n");
