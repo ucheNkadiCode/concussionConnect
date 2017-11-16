@@ -1,9 +1,6 @@
 <resources>
     <string name="app_name">ConcussionConnect</string>
     <string name="register_string">Register</string>
-    <string-array name="user_type">
-        <item>Trainer</item>
-    </string-array>
     <string-array name="memory_word_list_1">
         <item>Elbow</item>
         <item>Apple</item>
