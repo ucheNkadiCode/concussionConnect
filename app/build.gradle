@@ -32,5 +32,6 @@ dependencies {
     compile 'com.amazonaws:aws-android-sdk-ddb:2.6.3'
     compile 'com.amazonaws:aws-android-sdk-cognito:2.6.3'
     compile 'com.amazonaws:aws-android-sdk-cognitoidentityprovider:2.6.3'
+    compile 'com.amazonaws:aws-android-sdk-ses:2.6.3'
 //    testCompile 'junit:junit:4.12'
 }

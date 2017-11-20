@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,12 +13,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoDevice;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserSession;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationDetails;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.ChallengeContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.MultiFactorAuthenticationContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
+import com.amazonaws.services.cognitoidentityprovider.model.NotAuthorizedException;
+import com.amazonaws.services.cognitoidentityprovider.model.UserNotFoundException;
+import com.github.concussionconnect.Model.AWSHelper;
 import com.github.concussionconnect.R;
 
 /**
@@ -40,7 +45,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
         buttonLogin.setOnClickListener(this);
         textRegisterHere.setOnClickListener(this);
-
+        AWSHelper.init(this);
     }
     @Override
     public void onClick(View v) {
@@ -74,20 +79,25 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 //            return;
 //        }
 //        Toast.makeText(getApplicationContext(), "User would be logged in", Toast.LENGTH_SHORT).show();
-// Callback handler for the sign-in process
+//        Callback handler for the sign-in process
+        //CognitoUser cognitoUser = new CognitoUser();
+        CognitoUser cognitoUser = AWSHelper.getPool().getUser();
         AuthenticationHandler authenticationHandler = new AuthenticationHandler() {
 
             @Override
             public void onSuccess(CognitoUserSession cognitoUserSession, CognitoDevice device) {
                 // Sign-in was successful, cognitoUserSession will contain tokens for the user
+                Toast.makeText(getApplicationContext(), "You logged in!", Toast.LENGTH_LONG).show();
+                AWSHelper.setCurrSession(cognitoUserSession);
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
 
             @Override
             public void getAuthenticationDetails(AuthenticationContinuation authenticationContinuation, String userId) {
                 // The API needs user sign-in credentials to continue
-//                String userId = editTextEmail.getText().toString().trim();
+                String email = editTextEmail.getText().toString().trim().toLowerCase();
                 String password = editTextPassword.getText().toString().trim();
-                AuthenticationDetails authenticationDetails = new AuthenticationDetails(userId, password, null);
+                AuthenticationDetails authenticationDetails = new AuthenticationDetails(email, password, null);
 
                 // Pass the user sign-in credentials to the continuation
                 authenticationContinuation.setAuthenticationDetails(authenticationDetails);
@@ -98,15 +108,26 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
             @Override
             public void getMFACode(MultiFactorAuthenticationContinuation multiFactorAuthenticationContinuation) {
-//                // Multi-factor authentication is required; get the verification code from user
+//                This app will not be using MFA right now...
+//                Multi-factor authentication is required; get the verification code from user
 //                multiFactorAuthenticationContinuation.setMfaCode(mfaVerificationCode);
-//                // Allow the sign-in process to continue
+//                Allow the sign-in process to continue
 //                multiFactorAuthenticationContinuation.continueTask();
             }
 
             @Override
             public void onFailure(Exception exception) {
                 // Sign-in failed, check exception for the cause
+
+
+                if (exception.getMessage().contains("UserNotFoundException")) {
+                    Toast.makeText(getApplicationContext(), "Account was not found", Toast.LENGTH_SHORT).show();
+                } else if (exception.getMessage().contains("NotAuthorizedException")) {
+                    Toast.makeText(getApplicationContext(), "Incorrect Password", Toast.LENGTH_SHORT).show();
+                } else if (exception.getMessage().contains("UserNotConfirmedException")) {
+                    Toast.makeText(getApplicationContext(), "Your account is not yet confirmed", Toast.LENGTH_SHORT).show();
+                }
+
             }
             @Override
             public void authenticationChallenge(ChallengeContinuation challenge) {
@@ -115,8 +136,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         };
 
 // Sign in the user
-//        cognitoUser.getSessionInBackground(authenticationHandler);
-        finish();
-        startActivity(new Intent(this, MainActivity.class));
+        cognitoUser.getSessionInBackground(authenticationHandler);
+
     }
 }

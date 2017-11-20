@@ -24,6 +24,7 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHan
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProviderClient;
+import com.github.concussionconnect.Model.AWSHelper;
 import com.github.concussionconnect.R;
 
 import static java.lang.String.valueOf;
@@ -49,7 +50,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
         buttonRegister.setOnClickListener(this);
         textLoginHere.setOnClickListener(this);
-
+        AWSHelper.init(this);
     }
 
     public void userRegister() {
@@ -82,12 +83,13 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
 //        AmazonCognitoIdentityProviderClient identityProviderClient = new AmazonCognitoIdentityProviderClient(new AnonymousAWSCredentials(), new ClientConfiguration());
 //        identityProviderClient.setRegion(Region.getRegion(Regions.US_EAST_1));
 //        CognitoUserPool pool = new CognitoUserPool(context, USER_POOL_ID, APP_CLIENT_ID, APP_CLIENT_SECRET, identityProviderClient);
-        String poolId = "us-east-2_3UQW3UkEt";
-        String clientId = "780etbq74568h03k5uphag3e8a";
-        String clientSecret = "t0l4a1o6mhmmqflvp1pbtinum7l5fstthvvvndthftd2n6r27ol";
-        CognitoUserPool userPool = new CognitoUserPool(getApplicationContext(), poolId, clientId, clientSecret, Regions.US_EAST_2);
+//        String poolId = "us-east-2_3UQW3UkEt";
+//        String clientId = "780etbq74568h03k5uphag3e8a";
+//        String clientSecret = "t0l4a1o6mhmmqflvp1pbtinum7l5fstthvvvndthftd2n6r27ol";
+//        CognitoUserPool userPool = new CognitoUserPool(getApplicationContext(), poolId, clientId, clientSecret, Regions.US_EAST_2);
+        CognitoUserPool userPool = AWSHelper.getPool();
         CognitoUserAttributes userAttributes = new CognitoUserAttributes();
-        String email = editTextEmail.getText().toString().trim();
+        final String email = editTextEmail.getText().toString().trim().toLowerCase();
         String password = editTextPassword.getText().toString().trim();
         if (password.length() < 6) {
             Toast.makeText(getApplicationContext(), "Password length must be 6 or greater", Toast.LENGTH_LONG).show();
@@ -98,7 +100,6 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
         userAttributes.addAttribute("given_name", givenName);
         userAttributes.addAttribute("family_name", familyName);
         userAttributes.addAttribute("email", email);
-
         SignUpHandler signupCallback = new SignUpHandler() {
             @Override
             public void onSuccess(CognitoUser cognitoUser, boolean userConfirmed, CognitoUserCodeDeliveryDetails cognitoUserCodeDeliveryDetails) {
@@ -113,7 +114,6 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
                 else {
                     // The user has already been confirmed
                 }
-
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
             }
@@ -121,6 +121,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
             @Override
             public void onFailure(Exception exception) {
                 // Sign-up failed, check exception for the cause
+                Log.wtf("myWTFTag", exception.getMessage());
                 Toast.makeText(getApplicationContext(), "FAILURE", Toast.LENGTH_LONG).show();
             }
         };
