@@ -34,6 +34,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private EditText editTextPassword;
     private Button buttonLogin;
     private TextView textRegisterHere;
+    private String email;
+    private String password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,27 +63,25 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private void userLogin() {
         //Authenticate user's credentials and either display error message that user does not exist
         //or startActivity and allow user to enter app.
-//        String email = editTextEmail.getText().toString().trim();
-//        String password = editTextPassword.getText().toString().trim();
-//        if (TextUtils.isEmpty(email)) {
-//            // E-mail is empty
-//            Toast.makeText(this, "Please enter your e-mail", Toast.LENGTH_LONG).show();
-//
-//            // Stop the function from executing further
-//            return;
-//        }
-//
-//        if (TextUtils.isEmpty(password)) {
-//            // Password is empty
-//            Toast.makeText(this, "Please enter your password", Toast.LENGTH_LONG).show();
-//
-//            // Stop the function from executing further
-//            return;
-//        }
-//        Toast.makeText(getApplicationContext(), "User would be logged in", Toast.LENGTH_SHORT).show();
+        email = editTextEmail.getText().toString().trim().toLowerCase();
+        password = editTextPassword.getText().toString().trim();;
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(this, "Please enter your e-mail", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(password)) {
+            // Password is empty
+            Toast.makeText(this, "Please enter your password", Toast.LENGTH_LONG).show();
+
+            // Stop the function from executing further
+            return;
+        } else if (password.length() < 6) {
+            Toast.makeText(this, "Password must be 6 characters or more", Toast.LENGTH_LONG).show();
+            return;
+        }
+
 //        Callback handler for the sign-in process
-        //CognitoUser cognitoUser = new CognitoUser();
-        CognitoUser cognitoUser = AWSHelper.getPool().getUser();
         AuthenticationHandler authenticationHandler = new AuthenticationHandler() {
 
             @Override
@@ -89,14 +89,15 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 // Sign-in was successful, cognitoUserSession will contain tokens for the user
                 Toast.makeText(getApplicationContext(), "You logged in!", Toast.LENGTH_LONG).show();
                 AWSHelper.setCurrSession(cognitoUserSession);
+
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
 
             @Override
             public void getAuthenticationDetails(AuthenticationContinuation authenticationContinuation, String userId) {
                 // The API needs user sign-in credentials to continue
-                String email = editTextEmail.getText().toString().trim().toLowerCase();
-                String password = editTextPassword.getText().toString().trim();
+                AWSHelper.setUsername(email);
+                AWSHelper.setPassword(password);
                 AuthenticationDetails authenticationDetails = new AuthenticationDetails(email, password, null);
 
                 // Pass the user sign-in credentials to the continuation
@@ -118,14 +119,14 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             @Override
             public void onFailure(Exception exception) {
                 // Sign-in failed, check exception for the cause
-
-
                 if (exception.getMessage().contains("UserNotFoundException")) {
                     Toast.makeText(getApplicationContext(), "Account was not found", Toast.LENGTH_SHORT).show();
                 } else if (exception.getMessage().contains("NotAuthorizedException")) {
                     Toast.makeText(getApplicationContext(), "Incorrect Password", Toast.LENGTH_SHORT).show();
                 } else if (exception.getMessage().contains("UserNotConfirmedException")) {
                     Toast.makeText(getApplicationContext(), "Your account is not yet confirmed", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.wtf("what", exception.getMessage());
                 }
 
             }
@@ -136,7 +137,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         };
 
 // Sign in the user
-        cognitoUser.getSessionInBackground(authenticationHandler);
-
+        CognitoUser user = AWSHelper.getPool().getUser();
+        user.getSessionInBackground(authenticationHandler);
+        AWSHelper.setUser(user);
     }
 }

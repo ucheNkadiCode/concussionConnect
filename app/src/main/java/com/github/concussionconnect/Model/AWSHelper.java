@@ -11,6 +11,7 @@ import android.util.Log;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AnonymousAWSCredentials;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoDevice;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserAttributes;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserDetails;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool;
@@ -30,6 +31,9 @@ import java.util.Set;
 
 public class AWSHelper {
     // App settings
+    private static String username;
+    private static String password;
+
 
     private static List<String> attributeDisplaySeq;
     private static Map<String, String> signUpFieldsC2O;
@@ -37,7 +41,7 @@ public class AWSHelper {
 
     private static AWSHelper appHelper;
     private static CognitoUserPool userPool;
-    private static String user;
+    private static CognitoUser user;
     private static CognitoDevice newDevice;
 
     private static CognitoUserAttributes attributesChanged;
@@ -150,11 +154,26 @@ public class AWSHelper {
         return userDetails;
     }
 
-//    public static String getCurrUser() {
-//        return user;
-//    }
-//
-//    public static void setUser(String newUser) {
-//        user = newUser;
-//    }
+    public static CognitoUser getUser() {
+        return user;
+    }
+
+    public static void setUser(CognitoUser newUser) {
+        user = newUser;
+    }
+    public static String getUsername() {
+        return username;
+    }
+
+    public static void setUsername(String username) {
+        AWSHelper.username = username;
+    }
+
+    public static String getPassword() {
+        return password;
+    }
+
+    public static void setPassword(String password) {
+        AWSHelper.password = password;
+    }
 }

@@ -37,7 +37,8 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
     private EditText editTextPassword;
     private TextView textLoginHere;
     private Button buttonRegister;
-
+    private String email;
+    private String password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,49 +55,36 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
     }
 
     public void userRegister() {
-        //For now, when they click register, it'll take you into the test as a trainer
-        //        if (TextUtils.isEmpty(email)) {
-//            Toast.makeText(this, "Please enter your e-mail", Toast.LENGTH_LONG).show();
-//            return;
-//        }
-//
-//        if (TextUtils.isEmpty(firstName)) {
-//            Toast.makeText(this, "Please enter your first name", Toast.LENGTH_LONG).show();
-//            return;
-//        }
-//
-//        if (TextUtils.isEmpty(lastName)) {
-//            Toast.makeText(this, "Please enter your last name", Toast.LENGTH_LONG).show();
-//            return;
-//        }
-//
-//        if (TextUtils.isEmpty(userType)) {
-//            Toast.makeText(this, "Please select the user type", Toast.LENGTH_LONG).show();
-//            return;
-//        }
-//
-//        if (TextUtils.isEmpty(password)) {
-//            Toast.makeText(this, "Please enter your password", Toast.LENGTH_LONG).show();
-//            return;
-//        }
-//        Toast.makeText(getApplicationContext(), "User would be registered", Toast.LENGTH_LONG).show();
-//        AmazonCognitoIdentityProviderClient identityProviderClient = new AmazonCognitoIdentityProviderClient(new AnonymousAWSCredentials(), new ClientConfiguration());
-//        identityProviderClient.setRegion(Region.getRegion(Regions.US_EAST_1));
-//        CognitoUserPool pool = new CognitoUserPool(context, USER_POOL_ID, APP_CLIENT_ID, APP_CLIENT_SECRET, identityProviderClient);
-//        String poolId = "us-east-2_3UQW3UkEt";
-//        String clientId = "780etbq74568h03k5uphag3e8a";
-//        String clientSecret = "t0l4a1o6mhmmqflvp1pbtinum7l5fstthvvvndthftd2n6r27ol";
-//        CognitoUserPool userPool = new CognitoUserPool(getApplicationContext(), poolId, clientId, clientSecret, Regions.US_EAST_2);
-        CognitoUserPool userPool = AWSHelper.getPool();
-        CognitoUserAttributes userAttributes = new CognitoUserAttributes();
-        final String email = editTextEmail.getText().toString().trim().toLowerCase();
-        String password = editTextPassword.getText().toString().trim();
-        if (password.length() < 6) {
-            Toast.makeText(getApplicationContext(), "Password length must be 6 or greater", Toast.LENGTH_LONG).show();
-        }
-        //primary key hashcode, Given Name, Last Name, Birthdate
         String givenName = editTextFirstName.getText().toString().trim();
         String familyName = editTextLastName.getText().toString().trim();
+        email = editTextEmail.getText().toString().trim().toLowerCase();
+        password = editTextPassword.getText().toString().trim();
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(this, "Please enter your e-mail", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(givenName)) {
+            Toast.makeText(this, "Please enter your first name", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(familyName)) {
+            Toast.makeText(this, "Please enter your last name", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(password)) {
+            Toast.makeText(this, "Please enter your password", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (password.length() < 6) {
+            Toast.makeText(getApplicationContext(), "Password length must be 6 or greater", Toast.LENGTH_LONG).show();
+            return;
+        }
+        CognitoUserPool userPool = AWSHelper.getPool();
+        CognitoUserAttributes userAttributes = new CognitoUserAttributes();
+        //primary key hashcode, Given Name, Last Name, Birthdate
         userAttributes.addAttribute("given_name", givenName);
         userAttributes.addAttribute("family_name", familyName);
         userAttributes.addAttribute("email", email);
@@ -106,15 +94,20 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
                 Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
                 // Sign-up was successful
                 // Check if this user (cognitoUser) needs to be confirmed
+                AWSHelper.setUsername(email);
+                AWSHelper.setPassword(password);
+                AWSHelper.setUser(cognitoUser);
                 if(!userConfirmed) {
                     // This user must be confirmed and a confirmation code was sent to the user
                     // cognitoUserCodeDeliveryDetails will indicate where the confirmation code was sent
                     // Get the confirmation code from user
+
+                    startActivity(new Intent(getApplicationContext(), AwaitConfirmationActivity.class));
                 }
                 else {
                     // The user has already been confirmed
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 }
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
             }
 

@@ -10,21 +10,25 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserDetails;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserSession;
+import com.github.concussionconnect.Model.AWSHelper;
 import com.github.concussionconnect.R;
 
 public class SettingsActivity extends Activity implements View.OnClickListener {
     private ToggleButton infoButton;
-    private Button newPasswordButton;
+    private Button buttonChangePassword;
     private ImageButton backButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         infoButton = (ToggleButton) findViewById(R.id.infoButton);
-        newPasswordButton = (Button) findViewById(R.id.newPasswordButton);
+        buttonChangePassword = (Button) findViewById(R.id.buttonChangePassword);
         backButton = (ImageButton) findViewById(R.id.backButton);
         infoButton.setOnClickListener(this);
-        newPasswordButton.setOnClickListener(this);
+        buttonChangePassword.setOnClickListener(this);
         backButton.setOnClickListener(this);
     }
     @Override
@@ -36,8 +40,8 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
                 //Set the boolean to true
             }
         }
-        if (v == newPasswordButton) {
-            //make a change password page and bring the user to it
+        if (v == buttonChangePassword) {
+            startActivity(new Intent(this, ChangePasswordActivity.class));
         }
         if (v == backButton) {
             startActivity(new Intent(this, MainActivity.class));
