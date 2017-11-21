@@ -65,26 +65,27 @@ public class AWSHelper {
     /**
      * Add your pool id here
      */
-    private static final String userPoolId = "us-east-2_3UQW3UkEt";
-
+//    private static final String userPoolId = "us-east-2_3UQW3UkEt";
+    private static final String userPoolId = "us-east-1_cK66lvQsz";
     /**
      * Add you app id
      */
-    private static final String clientId = "780etbq74568h03k5uphag3e8a";
-
+//    private static final String clientId = "780etbq74568h03k5uphag3e8a";
+    private static final String clientId = "n88vuq15n6h35phbn0s2liqvf";
     /**
      * App secret associated with your app id - if the App id does not have an associated App secret,
      * set the App secret to null.
      * e.g. clientSecret = null;
      */
-    private static final String clientSecret = "t0l4a1o6mhmmqflvp1pbtinum7l5fstthvvvndthftd2n6r27ol";
+//    private static final String clientSecret = "t0l4a1o6mhmmqflvp1pbtinum7l5fstthvvvndthftd2n6r27ol";
+    private static final String clientSecret = "100k49uql4ohhse2c64po125ar8frg3djk6evrihsnq4947t9eac";
 
     /**
      * Set Your User Pools region.
      * e.g. if your user pools are in US East (N Virginia) then set cognitoRegion = Regions.US_EAST_1.
      */
-    private static final Regions cognitoRegion = Regions.US_EAST_2;
-
+//    private static final Regions cognitoRegion = Regions.US_EAST_2;
+    private static final Regions cognitoRegion = Regions.US_EAST_1;
     // User details from the service
     private static CognitoUserSession currSession;
     private static CognitoUserDetails userDetails;

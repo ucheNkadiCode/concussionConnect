@@ -106,6 +106,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
                 }
                 else {
                     // The user has already been confirmed
+                    //This will never happen because the administrator will be confirming users
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 }
 
@@ -118,9 +119,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
                 Toast.makeText(getApplicationContext(), "FAILURE", Toast.LENGTH_LONG).show();
             }
         };
-//        Log.wtf("myWTFTag", "HELLO BRO");
         userPool.signUpInBackground(email, password, userAttributes, null, signupCallback);
-//        finish();
 
     }
     @Override
