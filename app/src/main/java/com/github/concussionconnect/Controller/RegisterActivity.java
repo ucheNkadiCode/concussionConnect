@@ -2,32 +2,22 @@ package com.github.concussionconnect.Controller;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.amazonaws.ClientConfiguration;
-import com.amazonaws.auth.AnonymousAWSCredentials;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserAttributes;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserCodeDeliveryDetails;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHandler;
-import com.amazonaws.regions.Region;
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProviderClient;
 import com.github.concussionconnect.Model.AWSHelper;
 import com.github.concussionconnect.R;
-
-import static java.lang.String.valueOf;
 
 public class RegisterActivity extends Activity implements View.OnClickListener {
 
@@ -84,7 +74,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
         }
         CognitoUserPool userPool = AWSHelper.getPool();
         CognitoUserAttributes userAttributes = new CognitoUserAttributes();
-        //primary key hashcode, Given Name, Last Name, Birthdate
+        //Player key primary key hashcode, Given Name, Last Name, Birthdate
         userAttributes.addAttribute("given_name", givenName);
         userAttributes.addAttribute("family_name", familyName);
         userAttributes.addAttribute("email", email);
@@ -93,14 +83,13 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
             public void onSuccess(CognitoUser cognitoUser, boolean userConfirmed, CognitoUserCodeDeliveryDetails cognitoUserCodeDeliveryDetails) {
                 Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
                 // Sign-up was successful
-                // Check if this user (cognitoUser) needs to be confirmed
                 AWSHelper.setUsername(email);
                 AWSHelper.setPassword(password);
                 AWSHelper.setUser(cognitoUser);
+                // Check if this user (cognitoUser) needs to be confirmed
                 if(!userConfirmed) {
-                    // This user must be confirmed and a confirmation code was sent to the user
+                    // User must be confirmed by Administrator
                     // cognitoUserCodeDeliveryDetails will indicate where the confirmation code was sent
-                    // Get the confirmation code from user
 
                     startActivity(new Intent(getApplicationContext(), AwaitConfirmationActivity.class));
                 }
@@ -116,7 +105,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
             public void onFailure(Exception exception) {
                 // Sign-up failed, check exception for the cause
                 Log.wtf("myWTFTag", exception.getMessage());
-                Toast.makeText(getApplicationContext(), "FAILURE", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Registration Unsuccessful", Toast.LENGTH_LONG).show();
             }
         };
         userPool.signUpInBackground(email, password, userAttributes, null, signupCallback);
@@ -126,14 +115,13 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         if (v == buttonRegister) {
             userRegister();
-
         }
 
         if (v == textLoginHere) {
             startActivity(new Intent(this, LoginActivity.class));
         }
     }
-
+// The way that players will be hashed. Taking in their name and birthday
 //    String sha1Hash( String toHash )
 //    {
 //        String hash = null;

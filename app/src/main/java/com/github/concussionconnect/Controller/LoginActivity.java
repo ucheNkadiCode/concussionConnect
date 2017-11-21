@@ -89,7 +89,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 // Sign-in was successful, cognitoUserSession will contain tokens for the user
                 Toast.makeText(getApplicationContext(), "You logged in!", Toast.LENGTH_LONG).show();
                 AWSHelper.setCurrSession(cognitoUserSession);
-
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
 
@@ -136,8 +135,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             }
         };
 
-// Sign in the user
+        // Sign in the user
         CognitoUser user = AWSHelper.getPool().getUser();
+        //this creates user object with details
         user.getSessionInBackground(authenticationHandler);
         AWSHelper.setUser(user);
     }
