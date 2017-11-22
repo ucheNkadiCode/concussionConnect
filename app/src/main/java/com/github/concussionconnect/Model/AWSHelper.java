@@ -5,29 +5,12 @@ package com.github.concussionconnect.Model;
  */
 
 import android.content.Context;
-import android.graphics.Color;
-import android.util.Log;
 
-import com.amazonaws.ClientConfiguration;
-import com.amazonaws.auth.AnonymousAWSCredentials;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoDevice;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserAttributes;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserDetails;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserSession;
-import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
-import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvider;
-import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProviderClient;
-import com.amazonaws.services.cognitoidentityprovider.model.AttributeType;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public class AWSHelper {
     // App settings
@@ -119,11 +102,4 @@ public class AWSHelper {
         AWSHelper.username = username;
     }
 
-    public static String getPassword() {
-        return password;
-    }
-
-    public static void setPassword(String password) {
-        AWSHelper.password = password;
-    }
 }

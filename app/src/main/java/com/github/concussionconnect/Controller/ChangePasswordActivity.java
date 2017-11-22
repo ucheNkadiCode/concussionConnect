@@ -62,7 +62,7 @@ public class ChangePasswordActivity extends Activity implements View.OnClickList
             return;
         }
 
-        CognitoUser user = AWSHelper.getUser();
+        CognitoUser user = AWSHelper.getPool().getCurrentUser();
         user.changePasswordInBackground(oldPassword, newPassword1, new GenericHandler() {
             @Override
             public void onSuccess() {
