@@ -19,6 +19,7 @@ public class SymptomModel implements Serializable{
     public String getSympName() {
         return sympName;
     }
+
     public void setSympName(String sympName) {
         this.sympName = sympName;
     }

@@ -2,13 +2,24 @@ package com.github.concussionconnect.Controller;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.github.concussionconnect.Model.ConnectToDB;
 import com.github.concussionconnect.R;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TestSetupActivity extends Activity implements View.OnClickListener {
     private Spinner rosterSpinner;
@@ -21,16 +32,15 @@ public class TestSetupActivity extends Activity implements View.OnClickListener 
         rosterSpinner = (Spinner) findViewById(R.id.rosterSpinner);
         wordListSpinner = (Spinner) findViewById(R.id.wordListSpinner);
         nextButton = (Button) findViewById(R.id.nextButton);
-
-        ArrayAdapter<CharSequence> rosterAdapter = ArrayAdapter.createFromResource(this, R.array.roster, android.R.layout.simple_spinner_item);
-        rosterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        rosterSpinner.setAdapter(rosterAdapter);
-
         ArrayAdapter<CharSequence> wordListAdapter = ArrayAdapter.createFromResource(this, R.array.wordBankSelector, android.R.layout.simple_spinner_item);
         wordListAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         wordListSpinner.setAdapter(wordListAdapter);
-
         nextButton.setOnClickListener(this);
+        Bundle playerListBundle = getIntent().getExtras();
+        ArrayList<String> playerList = playerListBundle.getStringArrayList("roster");
+        ArrayAdapter<String> rosterAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, playerList);
+        rosterSpinner.setAdapter(rosterAdapter);
+
 
     }
     @Override
@@ -41,8 +51,12 @@ public class TestSetupActivity extends Activity implements View.OnClickListener 
             String listAnswer = "memory_word_list_" + (wordListSpinner.getSelectedItemPosition() + 1);
             int id = getResources().getIdentifier(listAnswer, "array", getPackageName());
             bundle.putInt("listId", id);
+            String playerInfo = rosterSpinner.getSelectedItem().toString();
+            bundle.putString("playerInfo", playerInfo);
             i.putExtras(bundle);
             startActivity(i);
         }
     }
+
+
 }
