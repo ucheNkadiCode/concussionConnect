@@ -104,7 +104,11 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
             public void onFailure(Exception exception) {
                 // Sign-up failed, check exception for the cause
                 Log.wtf("myWTFTag", exception.getMessage());
-                Toast.makeText(getApplicationContext(), "Registration Unsuccessful", Toast.LENGTH_LONG).show();
+                if (exception.getMessage().contains("UsernameExistsException")) {
+                    Toast.makeText(getApplicationContext(), "E-mail already found", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Registration Unsuccessful", Toast.LENGTH_LONG).show();
+                }
             }
         };
         userPool.signUpInBackground(email, password, userAttributes, null, signupCallback);
