@@ -28,6 +28,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        bundle = new Bundle();
         welcomeText = (TextView) findViewById(R.id.welcomeText);
         testButton = (Button) findViewById(R.id.testButton);
         settingsButton = (Button) findViewById(R.id.settingsButton);
@@ -35,7 +36,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         settingsButton.setOnClickListener(this);
         DBConnector connector = new DBConnector();
         connector.execute(null, null, null);
-        bundle = new Bundle();
 
     }
 
