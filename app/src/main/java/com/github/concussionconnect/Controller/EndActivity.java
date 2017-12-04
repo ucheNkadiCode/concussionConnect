@@ -81,6 +81,7 @@ public class EndActivity extends Activity implements View.OnClickListener {
             startActivity(new Intent(this, MainActivity.class));
         }
         if (v == submitButton) {
+            submitButton.setEnabled(false);
             DBConnector connector = new DBConnector();
             connector.execute(null, null, null);
         }
