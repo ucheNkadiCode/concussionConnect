@@ -1,6 +1,5 @@
 package com.github.concussionconnect.Model;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -20,20 +19,17 @@ public class ConnectToDB {
     // HTTP GET request
     public static JSONObject sendGetRequest(String function, Map<String, Object> params) throws Exception {
 
-        String url = "https://mpuhovix96.execute-api.us-east-1.amazonaws.com/prod/";
+        String url = "https://6zcq2enida.execute-api.us-east-1.amazonaws.com/prod/";
         url += function;
 
         String getArgs = "";
         for (String key : params.keySet()) {
             try {
                 getArgs += getArgs == "" ? "?" + key + "=" + params.get(key) : '&' + key + "=" + params.get(key);
-//                getArgs += key + "=" + params.get(key) + "&";
             } catch (Throwable t) {
                 System.out.println(t);
             }
-
         }
-//        getArgs += "fix=true";
         url += getArgs;
 
         try {
@@ -51,8 +47,10 @@ public class ConnectToDB {
 
             // Send get request
             int responseCode = con.getResponseCode();
+            String responseMessage = con.getResponseMessage();
             System.out.println("Sending get request : " + url);
             System.out.println("Response code : " + responseCode);
+            System.out.println("Message :" + responseMessage);
 
             // Reading response from input Stream
             BufferedReader in = new BufferedReader(
@@ -75,14 +73,18 @@ public class ConnectToDB {
     }
     public static JSONObject sendPostRequest(String function, Map<String, Object> params) throws Exception {
 
-        String url = "https://mpuhovix96.execute-api.us-east-1.amazonaws.com/prod/";
+        String url = "https://6zcq2enida.execute-api.us-east-1.amazonaws.com/prod/";
+//        String url = "https://ms6kl2vao2.execute-api.us-east-1.amazonaws.com/prod";
         url += function;
 
-        String postArgs = "?";
+        String postArgs = "";
         for (String key : params.keySet()) {
-            postArgs += key + "=" + params.get(key) + "&";
+            try {
+                postArgs += postArgs == "" ? "?" + key + "=" + params.get(key) : '&' + key + "=" + params.get(key);
+            } catch (Throwable t) {
+                System.out.println(t);
+            }
         }
-        postArgs += "fix=true";
         url += postArgs;
 
         try{
@@ -99,6 +101,8 @@ public class ConnectToDB {
             System.out.println("Sending 'POST' request to URL : " + url);
             System.out.println("Post Data : " + postArgs);
             System.out.println("Response Code : " + responseCode);
+            System.out.println("Message :" + con.getResponseMessage());
+
 
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(con.getInputStream()));

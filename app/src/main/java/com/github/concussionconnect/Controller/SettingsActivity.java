@@ -25,7 +25,7 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         if (v == infoButton) {
             if (!infoButton.isChecked()) {
-                //Set some kind of user boolean that will make sure they never see the test guid
+                //Set some kind of user boolean that will make sure they never see the tutorial
             } else {
                 //Set the boolean to true
             }

@@ -40,6 +40,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private TextView textForgotPassword;
     private String email;
     private String password;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,9 +75,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Please enter your email");
 
-// Set up the input
+        // Set up the input
         final EditText input = new EditText(this);
-// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+        // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(input);
 
@@ -85,7 +86,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             public void onClick(DialogInterface dialog, int which) {
                 String emailKey = input.getText().toString();
                 sendCode(emailKey);
-//                Toast.makeText(getApplicationContext(), "The email is " + emailKey, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "The email is " + emailKey, Toast.LENGTH_SHORT).show();
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -97,6 +98,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
         builder.show();
     }
+
     private void sendCode(String emailKey) {
         CognitoUser user = AWSHelper.getPool().getUser(emailKey);
         ForgotPasswordHandler handler = new ForgotPasswordHandler() {
@@ -124,7 +126,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 // When the code is available
 
                 // Set the new password
-                continuation.setPassword("Wrestling1");
+                continuation.setPassword("NOTWORKING");
 
                 // Set the code to verify
                 continuation.setVerificationCode("12345");

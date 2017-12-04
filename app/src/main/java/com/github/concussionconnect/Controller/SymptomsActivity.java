@@ -4,21 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ListView;
-import android.widget.SeekBar;
-import android.widget.TextView;
 
-import com.github.concussionconnect.Model.ChecklistAdapter;
-import com.github.concussionconnect.Model.ChecklistModel;
 import com.github.concussionconnect.Model.SymptomAdapter;
 import com.github.concussionconnect.Model.SymptomModel;
 import com.github.concussionconnect.R;
 
-import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SymptomsActivity extends Activity implements View.OnClickListener {

@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -29,13 +28,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bundle = new Bundle();
-        welcomeText = (TextView) findViewById(R.id.welcomeText);
-        testButton = (Button) findViewById(R.id.testButton);
-        settingsButton = (Button) findViewById(R.id.settingsButton);
-        testButton.setOnClickListener(this);
-        settingsButton.setOnClickListener(this);
         DBConnector connector = new DBConnector();
         connector.execute(null, null, null);
+
 
     }
 
@@ -74,7 +69,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
 
         protected void onPostExecute(String result) {
-            //Doing nothing
+            welcomeText = (TextView) findViewById(R.id.welcomeText);
+            testButton = (Button) findViewById(R.id.testButton);
+            settingsButton = (Button) findViewById(R.id.settingsButton);
+            testButton.setOnClickListener(MainActivity.this);
+            settingsButton.setOnClickListener(MainActivity.this);
         }
     }
 }

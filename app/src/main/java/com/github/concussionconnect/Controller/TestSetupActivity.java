@@ -2,24 +2,16 @@ package com.github.concussionconnect.Controller;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-import com.github.concussionconnect.Model.ConnectToDB;
 import com.github.concussionconnect.R;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class TestSetupActivity extends Activity implements View.OnClickListener {
     private Spinner rosterSpinner;

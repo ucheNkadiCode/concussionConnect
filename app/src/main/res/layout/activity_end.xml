@@ -18,23 +18,23 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:id="@+id/logoutButton"
+        android:id="@+id/cancelButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home"
-        android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/textView"
+        android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/textView"
-        android:layout_marginBottom="28dp" />
+        android:layout_marginBottom="28dp"
+        android:text="Cancel" />
 
     <Button
-        android:id="@+id/newTestButton"
+        android:id="@+id/submitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/logoutButton"
+        android:layout_alignBottom="@+id/cancelButton"
         android:layout_alignEnd="@+id/textView"
         android:layout_alignRight="@+id/textView"
-        android:text="New Test" />
+        android:text="Submit" />
 
     <TextView
         android:id="@+id/displayResults"

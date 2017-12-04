@@ -20,27 +20,27 @@
         android:layout_marginTop="31dp" />
 
     <EditText
-        android:inputType="textEmailAddress"
-        android:hint="E-mail"
         android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextRegistrationTitle"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="40dp" />
+        android:layout_below="@+id/editTextRegistrationTitle"
+        android:layout_marginTop="40dp"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress" />
 
 
     <EditText
-        android:inputType="textPassword"
-        android:hint="Password"
         android:id="@+id/editTextPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextEmail"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="26dp" />
+        android:layout_below="@+id/editTextEmail"
+        android:layout_marginTop="26dp"
+        android:hint="Password"
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/buttonLogin"

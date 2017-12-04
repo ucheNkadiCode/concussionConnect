@@ -82,12 +82,8 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
             @Override
             public void onSuccess(CognitoUser cognitoUser, boolean userConfirmed, CognitoUserCodeDeliveryDetails cognitoUserCodeDeliveryDetails) {
                 Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
-                // Sign-up was successful
                 AWSHelper.setUser(cognitoUser);
-                // Check if this user (cognitoUser) needs to be confirmed
                 if(!userConfirmed) {
-                    // User must be confirmed by Administrator
-                    // cognitoUserCodeDeliveryDetails will indicate where the confirmation code was sent
 
                     startActivity(new Intent(getApplicationContext(), AwaitConfirmationActivity.class));
                 }
@@ -95,7 +91,6 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
                     // This means the user has already been confirmed
                     //This will never happen because the administrator will be confirming users
                     Toast.makeText(getApplicationContext(), "This user already exists. Please Login", Toast.LENGTH_LONG).show();
-                    //startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 }
 
             }
