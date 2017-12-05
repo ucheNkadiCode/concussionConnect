@@ -27,6 +27,7 @@ public class EndActivity extends Activity implements View.OnClickListener {
     private TextView displayResults;
     private HashMap<String, Object> map;
     Bundle bundle;
+    DBConnector connector;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,8 +83,10 @@ public class EndActivity extends Activity implements View.OnClickListener {
         }
         if (v == submitButton) {
             submitButton.setEnabled(false);
-            DBConnector connector = new DBConnector();
-            connector.execute(null, null, null);
+            if (connector == null) {
+                connector = new DBConnector();
+                connector.execute(null, null, null);
+            }
         }
     }
     //The way that players will be hashed. Taking in their name and birthday
